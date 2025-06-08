@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-7 – Visionary Generation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            html {
+                font-family: 'DM Sans', sans-serif; /* Font utama */
+                scroll-behavior: smooth;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                font-family: 'Poppins', sans-serif; /* Font untuk heading */
+            }
+            body {
+                @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-500;
+            }
+            /* Custom Scrollbar (opsional, untuk tampilan lebih premium) */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+            ::-webkit-scrollbar-track {
+                background: theme('colors.gray.200');
+                @apply dark:bg-gray-700;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: theme('colors.purple.600');
+                border-radius: 4px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: theme('colors.purple.700');
+            }
+        }
+        /* Mode Gelap - Tailwind tidak langsung support untuk custom style, jadi kita bisa tambahkan di sini atau di config */
+        .dark .hero-overlay {
+            background-image: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+        }
+        .hero-overlay {
+            background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
+        }
+    </style>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-500 overflow-x-hidden">
+
+    <div id="preloader" class="fixed inset-0 bg-gray-900 dark:bg-black flex items-center justify-center z-[9999] opacity-100 transition-opacity duration-700">
+        <div class="relative w-24 h-24">
+            <div class="absolute inset-0 rounded-full border-4 border-purple-600 border-t-transparent animate-spin"></div>
+            <div class="absolute inset-0 rounded-full border-4 border-white border-t-transparent animate-spin-reverse delay-100"></div>
+            <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs font-bold tracking-wider">Loading...</span>
+        </div>
+    </div>
+
+
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300">
+        <nav class="container mx-auto flex justify-between items-center px-4">
+            <a href="#hero" class="text-2xl font-bold text-white dark:text-purple-300 group">
+                <span class="block transition-transform duration-300 group-hover:-translate-y-1">X-7</span>
+                <span class="block text-xs font-normal opacity-70 transition-transform duration-300 group-hover:translate-y-1">Visionary</span>
+            </a>
+
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#hero" class="nav-link text-white text-lg font-medium hover:text-purple-300 transition duration-300 active-link">Beranda</a></li>
+                <li><a href="#profile" class="nav-link text-white text-lg font-medium hover:text-purple-300 transition duration-300">Profil</a></li>
+                <li><a href="#students" class="nav-link text-white text-lg font-medium hover:text-purple-300 transition duration-300">Siswa</a></li>
+                <li><a href="#schedule" class="nav-link text-white text-lg font-medium hover:text-purple-300 transition duration-300">Jadwal</a></li>
+                <li><a href="#gallery" class="nav-link text-white text-lg font-medium hover:text-purple-300 transition duration-300">Galeri</a></li>
+                <li><a href="#contact" class="nav-link text-white text-lg font-medium hover:text-purple-300 transition duration-300">Kontak</a></li>
+            </ul>
+
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 rounded-full bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm text-white hover:bg-opacity-30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-300">
+                    <svg id="sun-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M2 12h1m15.325-4.275l.707-.707M3.975 19.325l.707-.707m0-12.707l-.707-.707m12.707 0l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                    <svg id="moon-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-full bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm text-white hover:bg-opacity-30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-95 dark:bg-black dark:bg-opacity-95 z-40 hidden md:hidden flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-500 ease-in-out">
+            <button id="close-mobile-menu" class="absolute top-6 right-6 text-white text-4xl">&times;</button>
+            <ul class="space-y-6 text-center">
+                <li><a href="#hero" class="mobile-nav-link text-white text-3xl font-bold hover:text-purple-400 transition duration-300">Beranda</a></li>
+                <li><a href="#profile" class="mobile-nav-link text-white text-3xl font-bold hover:text-purple-400 transition duration-300">Profil</a></li>
+                <li><a href="#students" class="mobile-nav-link text-white text-3xl font-bold hover:text-purple-400 transition duration-300">Siswa</a></li>
+                <li><a href="#schedule" class="mobile-nav-link text-white text-3xl font-bold hover:text-purple-400 transition duration-300">Jadwal</a></li>
+                <li><a href="#gallery" class="mobile-nav-link text-white text-3xl font-bold hover:text-purple-400 transition duration-300">Galeri</a></li>
+                <li><a href="#contact" class="mobile-nav-link text-white text-3xl font-bold hover:text-purple-400 transition duration-300">Kontak</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="relative flex items-center justify-center min-h-screen bg-cover bg-center text-white overflow-hidden" style="background-image: url('https://source.unsplash.com/1920x1080/?school,students,graduation,nightsky');">
+            <div class="hero-overlay absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent dark:from-black"></div>
+
+            <div class="relative z-10 text-center p-4" data-aos="zoom-out" data-aos-duration="1500" data-aos-once="true">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-4 leading-tight hero-title">
+                    <span class="block">X-7</span>
+                    <span class="block text-purple-400">Visionary Generation</span>
+                </h1>
+                <p class="text-lg md:text-xl lg:text-2xl font-medium mb-10 opacity-80 hero-tagline">
+                    "Membentuk Masa Depan Lewat Intelektualitas dan Solidaritas"
+                </p>
+                <a href="#profile" class="scroll-down-btn inline-block bg-purple-600 hover:bg-purple-700 text-white text-xl md:text-2xl font-bold py-4 px-10 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+                    Masuk
+                    <svg class="inline-block ml-3 w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </a>
+            </div>
+        </section>
+
+        <section id="profile" class="py-16 md:py-24 bg-gray-100 dark:bg-gray-800 transition-colors duration-500">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900 dark:text-white" data-aos="fade-up">Profil Kelas</h2>
+                
+                <div class="max-w-4xl mx-auto text-center mb-16" data-aos="fade-up" data-aos-delay="200">
+                    <p class="text-lg md:text-xl leading-relaxed text-gray-700 dark:text-gray-300">
+                        X-7 bukan hanya sekadar kelas, melainkan sebuah keluarga besar yang dinamis, penuh semangat, dan berdedikasi tinggi. Sejak terbentuk di kelas X, kami telah melewati berbagai tantangan dan momen kebersamaan yang tak terlupakan. Kami menjunjung tinggi nilai intelektualitas dalam setiap pembelajaran, selalu haus akan pengetahuan baru, dan tak ragu untuk berdiskusi demi mencapai pemahaman yang mendalam.
+                    </p>
+                    <p class="mt-4 text-lg md:text-xl leading-relaxed text-gray-700 dark:text-gray-300">
+                        Solidaritas adalah pilar utama kami; kami saling mendukung, merangkul perbedaan, dan selalu ada untuk satu sama lain, baik dalam suka maupun duka. Gaya belajar kami kolaboratif, dengan sering mengadakan kelompok belajar, sesi diskusi, dan proyek bersama yang mengasah kreativitas dan kemampuan pemecahan masalah. Kami percaya bahwa setiap siswa memiliki potensi unik, dan di X-7, kami berusaha untuk bersama-sama menggali dan mengembangkannya demi masa depan yang lebih cerah.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="text-purple-600 text-5xl mb-4 text-center">
+                            <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M6.343 17.657l-.707.707M18.657 6.343l.707-.707m-12.728 0l-.707-.707M12 10a4 4 0 110 8 4 4 0 010-8z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">Visi</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-center">Menjadi kelas yang unggul dalam akademik, berintegritas tinggi, dan inovatif.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="text-purple-600 text-5xl mb-4 text-center">
+                            <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">Misi 1</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-center">Menciptakan lingkungan belajar yang kondusif dan suportif.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" data-aos="zoom-in" data-aos-delay="500">
+                        <div class="text-purple-600 text-5xl mb-4 text-center">
+                            <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5A2.5 2.5 0 005 7.5c0 1.334.626 2.5 1.625 3.375M12 6.253C13.168 5.477 14.754 5 16.5 5A2.5 2.5 0 0119 7.5c0 1.334-.626 2.5-1.625 3.375m-1.25 1.375a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">Misi 2</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-center">Mengembangkan potensi unik setiap siswa melalui kegiatan ekstrakurikuler dan project.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-xl flex flex-col md:flex-row items-center md:items-start gap-8 mb-16" data-aos="fade-up" data-aos-delay="600">
+                    <div class="flex-shrink-0">
+                        <img src="https://dummyimage.com/200x200/4B0082/fff&text=Foto+Wali+Kelas" alt="Foto Wali Kelas" class="w-48 h-48 rounded-full object-cover shadow-lg border-4 border-purple-400">
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Gilang Prastista S,Pd</h3>
+                        <p class="text-xl font-semibold text-purple-600 mb-4">Wali Kelas X-7</p>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                            Bapak Gilang adalah sosok yang menginspirasi bagi kami. Dengan kesabaran dan kebijaksanaan, beliau membimbing kami tidak hanya dalam hal akademik, tetapi juga dalam membentuk karakter. Filosofi pendidikan beliau adalah "Setiap tunas memiliki jalannya sendiri untuk mekar, tugas kita adalah menyirami dan memberikan cahaya."
+                        </p>
+                        <button id="wali-kelas-pesan-btn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md">Pesan untuk Siswa</button>
+                        <p id="wali-kelas-pesan-text" class="mt-4 text-purple-700 dark:text-purple-300 italic hidden">"Anak-anakku, percaya pada proses, nikmati perjalanan, dan ingatlah bahwa kebersamaan adalah kekuatan terbesar kalian. Ibu bangga pada kalian semua!"</p>
+                    </div>
+                </div>
+
+                <h3 class="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white" data-aos="fade-up" data-aos-delay="700">Data Statistik Kelas</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 text-center">
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="800">
+                        <div class="text-purple-600 text-4xl mb-2 font-bold">36</div>
+                        <p class="text-gray-700 dark:text-gray-300">Jumlah Siswa</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="900">
+                        <div class="text-purple-600 text-4xl mb-2 font-bold">8.7</div>
+                        <p class="text-gray-700 dark:text-gray-300">Rata-rata Nilai </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="1000">
+                        <div class="text-purple-600 text-4xl mb-2 font-bold">75%</div>
+                        <p class="text-gray-700 dark:text-gray-300">Peminat PTN</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="1100">
+                        <div class="text-purple-600 text-4xl mb-2 font-bold">Musik & Olahraga</div>
+                        <p class="text-gray-700 dark:text-gray-300">Hobi Dominan</p>
+                    </div>
+                </div>
+
+                <h3 class="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white" data-aos="fade-up" data-aos-delay="1200">Perjalanan Kami</h3>
+                <div class="relative max-w-5xl mx-auto py-8">
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-purple-300 dark:bg-purple-700 rounded-full hidden md:block"></div>
+                    
+                    <div class="flex flex-col md:flex-row items-center justify-between md:odd:flex-row-reverse mb-12">
+                        <div class="md:w-1/2 md:text-right p-4" data-aos="fade-right" data-aos-delay="1300">
+                            <h4 class="text-xl font-bold text-purple-600 mb-2">Kelas X (2024-2025)</h4>
+                            <p class="text-gray-700 dark:text-gray-300">Awal perjalanan sebagai angkatan baru, masa adaptasi dan pembentukan ikatan persahabatan.</p>
+                        </div>
+                        <div class="md:w-1/2 p-4 md:text-left" data-aos="fade-left" data-aos-delay="1300">
+                            <div class="w-8 h-8 rounded-full bg-purple-600 border-4 border-white dark:border-gray-800 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:block"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center justify-between md:odd:flex-row-reverse mb-12">
+                        <div class="md:w-1/2 p-4 md:text-right" data-aos="fade-right" data-aos-delay="1400">
+                             <div class="w-8 h-8 rounded-full bg-purple-600 border-4 border-white dark:border-gray-800 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:block"></div>
+                        </div>
+                        <div class="md:w-1/2 md:text-left p-4" data-aos="fade-left" data-aos-delay="1400">
+                            <h4 class="text-xl font-bold text-purple-600 mb-2">Kelas XI (2024-2025)</h4>
+                            <p class="text-gray-700 dark:text-gray-300">Fokus pada pendalaman materi, awal project kolaboratif, dan kegiatan sosial pertama kelas.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center justify-between md:odd:flex-row-reverse mb-12">
+                        <div class="md:w-1/2 md:text-right p-4" data-aos="fade-right" data-aos-delay="1500">
+                            <h4 class="text-xl font-bold text-purple-600 mb-2">Kelas XII (2025-2026)</h4>
+                            <p class="text-gray-700 dark:text-gray-300">Tahun penentuan, persiapan ujian, fokus pada masa depan, dan puncak kebersamaan.</p>
+                        </div>
+                        <div class="md:w-1/2 p-4 md:text-left" data-aos="fade-left" data-aos-delay="1500">
+                            <div class="w-8 h-8 rounded-full bg-purple-600 border-4 border-white dark:border-gray-800 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:block"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="students" class="py-16 md:py-24 bg-white dark:bg-gray-900 transition-colors duration-500">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900 dark:text-white" data-aos="fade-up">Siswa X-7</h2>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-10" data-aos="fade-up" data-aos-delay="200">
+                    <button class="filter-btn bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-full transition duration-300 active" data-filter="all">Semua</button>
+                    <button class="filter-btn bg-gray-200 dark:bg-gray-700 hover:bg-purple-200 dark:hover:bg-purple-600 text-gray-800 dark:text-white font-semibold py-2 px-6 rounded-full transition duration-300" data-filter="ketua">Ketua Kelas</button>
+                    <button class="filter-btn bg-gray-200 dark:bg-gray-700 hover:bg-purple-200 dark:hover:bg-purple-600 text-gray-800 dark:text-white font-semibold py-2 px-6 rounded-full transition duration-300" data-filter="sekretaris">Sekretaris</button>
+                    <button class="filter-btn bg-gray-200 dark:bg-gray-700 hover:bg-purple-200 dark:hover:bg-purple-600 text-gray-800 dark:text-white font-semibold py-2 px-6 rounded-full transition duration-300" data-filter="bendahara">Bendahara</button>
+                    <button class="filter-btn bg-gray-200 dark:bg-gray-700 hover:bg-purple-200 dark:hover:bg-purple-600 text-gray-800 dark:text-white font-semibold py-2 px-6 rounded-full transition duration-300" data-filter="anggota">Anggota</button>
+                </div>
+
+                <div id="student-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    </div>
+            </div>
+        </section>
+
+        <section id="schedule" class="py-16 md:py-24 bg-gray-100 dark:bg-gray-800 transition-colors duration-500">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900 dark:text-white" data-aos="fade-up">Jadwal Pelajaran Kelas X-7 Semester Saat Ini</h2>
+                
+                <div class="overflow-x-auto relative shadow-xl rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-white uppercase bg-purple-600 dark:bg-purple-700">
+                            <tr>
+                                <th scope="col" class="py-3 px-6">Jam</th>
+                                <th scope="col" class="py-3 px-6">Senin</th>
+                                <th scope="col" class="py-3 px-6">Selasa</th>
+                                <th scope="col" class="py-3 px-6">Rabu</th>
+                                <th scope="col" class="py-3 px-6">Kamis</th>
+                                <th scope="col" class="py-3 px-6">Jumat</th>
+                                <th scope="col" class="py-3 px-6">Sabtu</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedule-body">
+                            </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-12 p-6 bg-white dark:bg-gray-700 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Info Ekstra:</h3>
+                    <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
+                        <li><span class="font-semibold">Jadwal Piket:</span> Silakan cek papan pengumuman kelas.</li>
+                        <li><span class="font-semibold">Jadwal Ujian:</span> Akan diinformasikan melalui grup kelas dan guru mata pelajaran.</li>
+                        <li><span class="font-semibold">Ekstrakurikuler:</span> Sesuai jadwal masing-masing ekskul.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="py-16 md:py-24 bg-white dark:bg-gray-900 transition-colors duration-500">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900 dark:text-white" data-aos="fade-up">Galeri Kenangan</h2>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-10" data-aos="fade-up" data-aos-delay="200">
+                    <button class="gallery-filter-btn bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-full transition duration-300 active" data-filter="all">Semua</button>
+                    <button class="gallery-filter-btn bg-gray-200 dark:bg-gray-700 hover:bg-purple-200 dark:hover:bg-purple-600 text-gray-800 dark:text-white font-semibold py-2 px-6 rounded-full transition duration-300" data-filter="school-event">Acara Sekolah</button>
+                    <button class="gallery-filter-btn bg-gray-200 dark:bg-gray-700 hover:bg-purple-200 dark:hover:bg-purple-600 text-gray-800 dark:text-white font-semibold py-2 px-6 rounded-full transition duration-300" data-filter="study-tour">Study Tour</button>
+                    <button class="gallery-filter-btn bg-gray-200 dark:bg-gray-700 hover:bg-purple-200 dark:hover:bg-purple-600 text-gray-800 dark:text-white font-semibold py-2 px-6 rounded-full transition duration-300" data-filter="classmeeting">Classmeeting</button>
+                    <button class="gallery-filter-btn bg-gray-200 dark:bg-gray-700 hover:bg-purple-200 dark:hover:bg-purple-600 text-gray-800 dark:text-white font-semibold py-2 px-6 rounded-full transition duration-300" data-filter="daily-life">Kegiatan Sehari-hari</button>
+                </div>
+
+                <div id="gallery-grid" class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6" data-aos="fade-up" data-aos-delay="300">
+                    </div>
+
+                <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[100] hidden transition-opacity duration-300 opacity-0">
+                    <button id="lightbox-close" class="absolute top-6 right-6 text-white text-5xl font-light hover:text-purple-400 transition-colors duration-300">&times;</button>
+                    <img id="lightbox-img" src="" alt="Full Image" class="max-w-[90vw] max-h-[90vh] object-contain">
+                </div>
+
+                <div class="mt-20 text-center" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Video Reel Kenangan Kami</h3>
+                    <div class="relative w-full max-w-2xl mx-auto aspect-video rounded-lg overflow-hidden shadow-2xl">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=Wp3B2jYw5J8Lz-a3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 md:py-24 bg-gray-100 dark:bg-gray-800 transition-colors duration-500 relative overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center opacity-30 dark:opacity-20 z-0" style="background-image: url('https://source.unsplash.com/1920x1080/?school,classroom,bokeh');"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-100 dark:from-gray-800 to-transparent z-0"></div>
+
+
+            <div class="container mx-auto px-4 relative z-10">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900 dark:text-white" data-aos="fade-up">Hubungi Kami</h2>
+                
+                <div class="max-w-2xl mx-auto bg-white dark:bg-gray-700 p-8 md:p-10 rounded-xl shadow-2xl backdrop-blur-lg backdrop-filter bg-opacity-90 dark:bg-opacity-90" data-aos="fade-up" data-aos-delay="200">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Nama Lengkap</label>
+                            <input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300" placeholder="Nama Anda" required>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Subjek</label>
+                            <input type="text" id="subject" name="subject" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300" placeholder="Contoh: Pertanyaan tentang kelas" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Pesan Anda</label>
+                            <textarea id="message" name="message" rows="5" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md">Kirim Pesan</button>
+                    </form>
+
+                    <div class="mt-8 text-center" data-aos="fade-up" data-aos-delay="300">
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Atau hubungi kami langsung melalui:</p>
+                        <div class="flex justify-center space-x-6">
+                            <a href="https://wa.me/6282350098189" target="_blank" class="text-gray-700 dark:text-white hover:text-green-500 transition-colors duration-300">
+                                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.77.46 3.45 1.26 4.9L2.05 22l5.12-1.34c1.4-.76 2.97-1.16 4.33-1.16h.04c5.45 0 9.89-4.44 9.89-9.9C21.94 6.44 17.5 2 12.04 2zm5.83 14.37c-.2-.1-.82-.41-.95-.45-.14-.04-.24-.04-.34.04-.1.08-.38.45-.47.54-.09.09-.18.1-.33.05-.14-.04-.6-.22-1.14-.7-.42-.37-.7-.84-.78-.98-.08-.14-.01-.13.06-.2-.06-.15-.47-1.14-.64-1.5-.14-.3-.12-.26-.33-.31-.2-.05-.43-.05-.66-.05-.23 0-.6.04-.91.36-.3.32-1.14 1.13-1.14 2.76 0 1.63 1.17 3.2 1.33 3.43.16.23 2.33 3.53 5.66 4.88 3.32 1.35 3.32.9 3.93.85.6-.05 1.84-.75 2.1-1.46.26-.71.26-1.32.18-1.46-.08-.14-.2-.23-.41-.33z"/></svg>
+                                <span class="sr-only">WhatsApp</span>
+                            </a>
+                            <a href="https://www.instagram.com/allabout.tenseven/" target="_blank" class="text-gray-700 dark:text-white hover:text-pink-500 transition-colors duration-300">
+                                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.071 1.17.062 1.954.232 2.591.488.945.367 1.572.953 2.146 1.57.607.607 1.163 1.233 1.57 2.146.256.637.426 1.421.488 2.591.06.843.07 1.096.07 4.85s-.011 3.584-.07 4.85c-.062 1.17-.232 1.954-.488 2.591-.367.945-.953 1.572-1.57 2.146-.607.607-1.233 1.163-2.146 1.57-.637.256-1.421.426-2.591.488-.843.06-1.096.07-4.85.07s-3.584-.011-4.85-.07c-1.17-.062-1.954-.232-2.591-.488-.945-.367-1.572-.953-2.146-1.57-.607-.607-1.163-1.233-1.57-2.146-.256-.637-.426-1.421-.488-2.591-.06-.843-.07-1.096-.07-4.85s.011-3.584.07-4.85c.062-1.17.232-1.954.488-2.591.367-.945.953-1.572 1.57-2.146.607-.607 1.233-1.163 2.146-1.57.637-.256 1.421-.426 2.591-.488.843-.06 1.096-.07 4.85-.07zm0 2.163c-3.204 0-3.584.012-4.85.071-1.17.062-1.954.232-2.591.488-.945.367-1.572.953-2.146 1.57-.607.607-1.233 1.163-1.57 2.146-.256.637-.426 1.421-.488 2.591-.06.843-.07 1.096-.07 4.85s.011 3.584.07 4.85c.062 1.17.232 1.954.488 2.591.367.945.953 1.572 1.57 2.146.607.607 1.233 1.163 2.146 1.57.637.256 1.421.426 2.591.488.843.06 1.096.07 4.85.07s3.584-.011 4.85-.07c1.17-.062 1.954-.232 2.591-.488.945-.367 1.572-.953 2.146-1.57.607-.607 1.163-1.233 1.57-2.146.256-.637.426-1.421.488-2.591.06-.843.07-1.096.07-4.85s-.011-3.584-.07-4.85c-.062-1.17-.232-1.954-.488-2.591-.367-.945-.953-1.572-2.146-1.57-.607-.607-1.233-1.163-1.57-2.146zm-2.887 3.588a6.387 6.387 0 110 12.774 6.387 6.387 0 010-12.774zm0 2.163a4.224 4.224 0 100 8.448 4.224 4.224 0 000-8.448zm8.685-2.011a1.277 1.277 0 11-2.554 0 1.277 1.277 0 012.554 0z"/></svg>
+                                <span class="sr-only">Instagram</span>
+                            </a>
+                            <a href="#" target="_blank" class="text-gray-700 dark:text-white hover:text-blue-500 transition-colors duration-300">
+                                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.42 8.78c-.29-.12-1.74-.6-2.15-.75-.41-.15-.7-.12-1.02.13-.32.25-.97.7-.97 1.24s1.02 1.43 1.17 1.63c.15.2.29.28.53.28.24 0 .78-.36.95-.49.18-.13.31-.22.45-.25.15-.03.55-.07.84.18.29.25.99.96 1.22 1.09.23.13.4.19.6.19.16 0 .5-.05.7-.22.2-.17.65-.24 1.13-.5.48-.26 1.03-.68 1.18-.84.15-.15.2-.28.2-.41 0-.13-.02-.25-.05-.38-.03-.13-.13-.23-.29-.36-.16-.13-.39-.21-.59-.28-.2-.07-.44-.14-.68-.17-.24-.03-.49-.03-.73-.03z"/></svg>
+                                <span class="sr-only">TikTok</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 dark:bg-black text-white py-10 md:py-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-8">
+                <a href="#hero" class="text-4xl font-extrabold text-purple-400 block mb-2">X-7</a>
+                <p class="text-gray-400 text-sm">Visionary Generation</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 mb-8">
+                <a href="#hero" class="text-gray-300 hover:text-purple-400 transition duration-300">Beranda</a>
+                <a href="#profile" class="text-gray-300 hover:text-purple-400 transition duration-300">Profil</a>
+                <a href="#students" class="text-gray-300 hover:text-purple-400 transition duration-300">Siswa</a>
+                <a href="#schedule" class="text-gray-300 hover:text-purple-400 transition duration-300">Jadwal</a>
+                <a href="#gallery" class="text-gray-300 hover:text-purple-400 transition duration-300">Galeri</a>
+                <a href="#contact" class="text-gray-300 hover:text-purple-400 transition duration-300">Kontak</a>
+            </div>
+
+            <p class="text-gray-400 mb-2">
+                Website ini dibuat oleh Dana Satria salah satu murid unggulan di kelas X-7
+            </p>
+            <p class="text-gray-500 text-sm">&copy; 2025/2026 X-7. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./js/script.js"></script>
+
+    <script>
+        // Inisialisasi AOS
+        AOS.init({
+            duration: 1000,
+            once: true, // Animasi hanya berjalan sekali saat discroll
+            mirror: false, // Animasi tidak berjalan mundur saat discroll ke atas
+        });
+
+        // GSAP untuk animasi hero section
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animasi Judul Hero Section (fade in, zoom out)
+        gsap.from(".hero-title", {
+            opacity: 0,
+            scale: 0.8,
+            y: 50,
+            duration: 1.5,
+            ease: "power3.out",
+            delay: 1.5 // Setelah preloader
+        });
+        gsap.from(".hero-tagline", {
+            opacity: 0,
+            y: 30,
+            duration: 1.5,
+            ease: "power3.out",
+            delay: 1.8
+        });
+        gsap.from(".scroll-down-btn", {
+            opacity: 0,
+            y: 30,
+            duration: 1.5,
+            ease: "power3.out",
+            delay: 2.1
+        });
+
+        // Parallax Effect untuk background hero (opsional, bisa diganti video)
+        gsap.to("#hero", {
+            backgroundPositionY: "20%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+                // markers: true // Hapus ini di produksi
+            }
+        });
+
+        // Animasi header saat scroll
+        const mainHeader = document.getElementById('main-header');
+        ScrollTrigger.create({
+            trigger: "body",
+            start: "top -=100", // Header mulai berubah setelah scroll 100px
+            end: "bottom top",
+            onEnter: () => mainHeader.classList.add('bg-gray-900', 'bg-opacity-80', 'dark:bg-black', 'dark:bg-opacity-80', 'py-3', 'shadow-lg', 'backdrop-filter', 'backdrop-blur-sm'),
+            onLeaveBack: () => mainHeader.classList.remove('bg-gray-900', 'bg-opacity-80', 'dark:bg-black', 'dark:bg-opacity-80', 'py-3', 'shadow-lg', 'backdrop-filter', 'backdrop-blur-sm'),
+        });
+    </script>
+</body>
+</html>
