@@ -166,37 +166,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const studentsData = [
         { name: "Ardika Fahmi Aladdin", photo: "https://dummyimage.com/300x300/4B0082/fff&text=Ardika", position: "ketua", dream: "-", funFact: "-" },
         { name: "Vera Fransiska", photo: "https://dummyimage.com/300x300/8A2BE2/fff&text=Siska", position: "sekretaris", dream: "-", funFact: "-" },
-        { name: "Candra Wijaya", photo: "https://dummyimage.com/300x300/DA70D6/fff&text=Candra", position: "bendahara", dream: "Entrepreneur", funFact: "Hobi berdagang online" },
-        { name: "Dewi Susanti", photo: "https://dummyimage.com/300x300/9370DB/fff&text=Dewi", position: "anggota", dream: "Dokter", funFact: "Punya koleksi komik medis" },
-        { name: "Eko Nugroho", photo: "https://dummyimage.com/300x300/BA55D3/fff&text=Eko", position: "anggota", dream: "Desainer Grafis", funFact: "Jago Photoshop dan Illustrator" },
-        { name: "Fitri Ramadhani", photo: "https://dummyimage.com/300x300/9400D3/fff&text=Fitri", position: "anggota", dream: "Guru", funFact: "Suka mengajari teman-teman" },
-        { name: "Gita Cahyani", photo: "https://dummyimage.com/300x300/BF00FF/fff&text=Gita", position: "anggota", dream: "Penulis", funFact: "Sering menulis cerita pendek" },
-        { name: "Hadi Santoso", photo: "https://dummyimage.com/300x300/800080/fff&text=Hadi", position: "anggota", dream: "Insinyur", funFact: "Hobi merakit robot" },
-        { name: "Indah Permata", photo: "https://dummyimage.com/300x300/8B008B/fff&text=Indah", position: "anggota", dream: "Fotografer", funFact: "Selalu bawa kamera" },
-        { name: "Joko Setiawan", photo: "https://dummyimage.com/300x300/9932CC/fff&text=Joko", position: "anggota", dream: "Atlet Profesional", funFact: "Rutin berlatih basket" },
-        { name: "Kiki Amelia", photo: "https://dummyimage.com/300x300/DDA0DD/fff&text=Kiki", position: "anggota", dream: "Koki", funFact: "Pandai membuat kue" },
-        { name: "Lukman Hakim", photo: "https://dummyimage.com/300x300/EE82EE/fff&text=Lukman", position: "anggota", dream: "Wartawan", funFact: "Suka mencari berita terkini" },
-        { name: "Mega Putri", photo: "https://dummyimage.com/300x300/DA70D6/fff&text=Mega", position: "anggota", dream: "Desainer Fashion", funFact: "Hobi menjahit baju" },
-        { name: "Naufal Ramadhan", photo: "https://dummyimage.com/300x300/BA55D3/fff&text=Naufal", position: "anggota", dream: "Peneliti", funFact: "Gemar membaca jurnal ilmiah" },
-        { name: "Olivia Wijaya", photo: "https://dummyimage.com/300x300/9400D3/fff&text=Olivia", position: "anggota", dream: "Seniman", funFact: "Melukis di waktu luang" },
-        { name: "Putra Sanjaya", photo: "https://dummyimage.com/300x300/BF00FF/fff&text=Putra", position: "anggota", dream: "Pilot", funFact: "Sering membuat model pesawat" },
-        
-        { name: "Qori Anisa", photo: "https://dummyimage.com/300x300/800080/fff&text=Qori", position: "anggota", dream: "Ahli Gizi", funFact: "Hobi masak makanan sehat" },
-        { name: "Rizky Firmansyah", photo: "https://dummyimage.com/300x300/8B008B/fff&text=Rizky", position: "anggota", dream: "Game Developer", funFact: "Sering begadang main game" },
-        { name: "Siti Rahayu", photo: "https://dummyimage.com/300x300/9932CC/fff&text=Siti", position: "anggota", dream: "Pustakawan", funFact: "Suka membaca buku klasik" },
-        { name: "Taufik Hidayat", photo: "https://dummyimage.com/300x300/DDA0DD/fff&text=Taufik", position: "anggota", dream: "Teknisi", funFact: "Jago memperbaiki elektronik" },
-        { name: "Ulfah Nurjanah", photo: "https://dummyimage.com/300x300/EE82EE/fff&text=Ulfah", position: "anggota", dream: "Konsultan", funFact: "Senang memecahkan masalah" },
-        { name: "Vina Permata", photo: "https://dummyimage.com/300x300/DA70D6/fff&text=Vina", position: "anggota", dream: "Psikolog", funFact: "Pendengar yang baik" },
-        { name: "Wahyu Aditama", photo: "https://dummyimage.com/300x300/BA55D3/fff&text=Wahyu", position: "anggota", dream: "Chef", funFact: "Suka bereksperimen dengan resep" },
-        { name: "Xena Putri", photo: "https://dummyimage.com/300x300/9400D3/fff&text=Xena", position: "anggota", dream: "Penari", funFact: "Aktif di sanggar tari" },
-        { name: "Yoga Pratama", photo: "https://dummyimage.com/300x300/BF00FF/fff&text=Yoga", position: "anggota", dream: "Fotografer Satwa", funFact: "Suka hiking dan memotret alam" },
-        { name: "Zahra Karim", photo: "https://dummyimage.com/300x300/800080/fff&text=Zahra", position: "anggota", dream: "Astronot", funFact: "Penggemar sains fiksi" },
-        { name: "Aisyah Nur", photo: "https://dummyimage.com/300x300/8B008B/fff&text=Aisyah", position: "anggota", dream: "Desainer Produk", funFact: "Kreatif membuat prototype" },
-        { name: "Bayu Saputra", photo: "https://dummyimage.com/300x300/9932CC/fff&text=Bayu", position: "anggota", dream: "Data Scientist", funFact: "Suka menganalisis data" },
-        { name: "Citra Dewi", photo: "https://dummyimage.com/300x300/DDA0DD/fff&text=Citra", position: "anggota", dream: "Ahli Arkeologi", funFact: "Suka membaca buku sejarah" },
-        { name: "Deni Ramadhan", photo: "https://dummyimage.com/300x300/EE82EE/fff&text=Deni", position: "anggota", dream: "Petani Modern", funFact: "Tertarik teknologi hidroponik" },
-        { name: "Elsa Fitri", photo: "https://dummyimage.com/300x300/DA70D6/fff&text=Elsa", position: "anggota", dream: "Ilustrator", funFact: "Menggambar komik sendiri" },
-        { name: "Fajar Rizky", photo: "https://dummyimage.com/300x300/BA55D3/fff&text=Fajar", position: "anggota", dream: "Geologis", funFact: "Suka koleksi batu" }
+        { name: "Dian", photo: "https://dummyimage.com/300x300/DA70D6/fff&text=Dian", position: "bendahara", dream: "-", funFact: "-" },
+        { name: "Dana Satria", photo: "https://dummyimage.com/300x300/9370DB/fff&text=Satrioo", position: "anggota", dream: "Programmer", funFact: "Jago main gitar" },
+        { name: "Risak Puspita Aura", photo: "https://dummyimage.com/300x300/BA55D3/fff&text=Ipah", position: "anggota", dream: "Nggembel", funFact: "-" },
+        { name: "Albriyan Solehatul Nugroho", photo: "https://dummyimage.com/300x300/9400D3/fff&text=Mr.Hadi", position: "anggota", dream: "Jadi Tuhan", funFact: "Anak jaulah" },
+        { name: "Rendi Oktaviano Mahendra", photo: "https://dummyimage.com/300x300/BF00FF/fff&text=Mamen", position: "anggota", dream: "-", funFact: "-" },
+        { name: "Kevin Andrea Sebastian", photo: "https://dummyimage.com/300x300/800080/fff&text=Kevin", position: "anggota", dream: "-", funFact: "-" },
+        { name: "Juli Andra Saputra", photo: "https://dummyimage.com/300x300/8B008B/fff&text=Andra", position: "anggota", dream: "-", funFact: "-" },
+        { name: "Bayu Sandika", photo: "https://dummyimage.com/300x300/9932CC/fff&text=Satam", position: "anggota", dream: "-", funFact: "-" },
+        { name: "Andi Amirullah Haqq", photo: "https://dummyimage.com/300x300/DDA0DD/fff&text=Andi", position: "anggota", dream: "Sound Horeg", funFact: "Hamanya cepuluh tujuh" },
+        { name: "Asti Aprilia Dwi Ardika", photo: "https://dummyimage.com/300x300/EE82EE/fff&text=Asti", position: "anggota", dream: "-", funFact: "-" },
+        { name: "Rendiansyah Dinoto", photo: "https://dummyimage.com/300x300/DA70D6/fff&text=Rendi", position: "anggota", dream: "-", funFact: "-" },
+        { name: "Dafa Reza Ekspander", photo: "https://dummyimage.com/300x300/BA55D3/fff&text=Dapa", position: "anggota", dream: "-", funFact: "-" },
+        { name: "Risaka Wahyu Ningtias", photo: "https://dummyimage.com/300x300/9400D3/fff&text=Riska", position: "anggota", dream: "-", funFact: "-" },
+        { name: "Putra Sanjaya", photo: "https://dummyimage.com/300x300/BF00FF/fff&text=Putra", position: "anggota", dream: "Solikin", funFact: "-" },
     ];
 
     const studentGrid = document.getElementById('student-grid');
@@ -243,21 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderStudents(); // Render all students on initial load
 
-    // --- 7. Jadwal Pelajaran ---
-    const scheduleData = [
-        { time: "07.00 - 07.45", monday: "Upacara/Apel Pagi", tuesday: "Geografi", wednesday: "Biologi", thursday: "Fisika", friday: "Biologi", saturday: "Kegiatan Pramuka" },
-        { time: "07.45 - 08.30", monday: "B. Indonesia", tuesday: "Matematika", wednesday: "Fisika", thursday: "Kimia", friday: "Biologi", saturday: "Ekskul Pilihan" },
-        { time: "08.30 - 09.15", monday: "B. Indonesia", tuesday: "Kimia", wednesday: "Matematika", thursday: "Fisika", friday: "Sejarah", saturday: "Ekskul Pilihan" },
-        { time: "09.15 - 09.45", monday: "Istirahat", tuesday: "Istirahat", wednesday: "Istirahat", thursday: "Istirahat", friday: "Istirahat", saturday: "Istirahat" },
-        { time: "09.45 - 10.30", monday: "Fisika", tuesday: "Kimia", wednesday: "Matematika", thursday: "Biologi", friday: "Sosiologi", saturday: "Olahraga/Seni" },
-        { time: "10.30 - 11.15", monday: "Fisika", tuesday: "Biologi", wednesday: "Kimia", thursday: "Biologi", friday: "Sosiologi", saturday: "Olahraga/Seni" },
-        { time: "11.15 - 12.00", monday: "Matematika", tuesday: "Biologi", wednesday: "Kimia", thursday: "B. Inggris", friday: "Pend. Agama", saturday: "Kebersihan Kelas" },
-        { time: "12.00 - 13.00", monday: "Istirahat & Ishoma", tuesday: "Istirahat & Ishoma", wednesday: "Istirahat & Ishoma", thursday: "Istirahat & Ishoma", friday: "Istirahat & Ishoma", saturday: "Istirahat & Ishoma" },
-        { time: "13.00 - 13.45", monday: "B. Inggris", tuesday: "Sejarah", wednesday: "Seni Budaya", thursday: "PJOK", friday: "B. Arab/Mandarin", saturday: "Remedial/Pengayaan" },
-        { time: "13.45 - 14.30", monday: "B. Inggris", tuesday: "Sejarah", wednesday: "Seni Budaya", thursday: "PJOK", friday: "B. Arab/Mandarin", saturday: "Remedial/Pengayaan" },
-        { time: "14.30 - 15.15", monday: "Prakarya", tuesday: "Prakarya", wednesday: "BK/TIK", thursday: "BK/TIK", friday: "Diskusi/Piket", saturday: "Pulang" }
-    ];
-
+    
     const scheduleBody = document.getElementById('schedule-body');
     const days = ["minggu", "senin", "selasa", "rabu", "kamis", "jumat", "sabtu"];
     const todayIndex = new Date().getDay(); // 0 for Sunday, 1 for Monday, etc.
@@ -273,29 +242,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (key === 'time') {
                 td.classList.add('font-medium', 'text-purple-600', 'dark:text-purple-400');
+                td.textContent = row[key];
             } else {
-                const dayColumnKey = days[Object.keys(row).indexOf(key)]; // Get day name based on index
-                if (todayName === key) { // Check if the current column key matches today's name
-                    td.classList.add('bg-purple-100', 'dark:bg-purple-800', 'font-semibold'); // Highlight today's column
-                }
-
                 const subject = row[key];
-                // Split subject by '/' to find guru/lokasi if available
-                const parts = subject.split(' (');
-                const mainSubject = parts[0];
-                const detail = parts[1] ? parts[1].replace(')', '') : '';
-
-                td.innerHTML = `
-                    <span class="block">${mainSubject}</span>
-                    ${detail ? `<span class="text-xs text-gray-500 dark:text-gray-400 block">${detail}</span>` : ''}
-                `;
-
-                // Add hover effect with tooltip for subject, teacher, location (if applicable)
-                if (subject && subject !== "Istirahat" && subject !== "Pulang" && subject !== "Upacara/Apel Pagi" && subject !== "Kegiatan Pramuka" && subject !== "Ekskul Pilihan" && subject !== "Olahraga/Seni" && subject !== "Kebersihan Kelas" && subject !== "Remedial/Pengayaan") {
-                    td.classList.add('hover:bg-purple-50', 'dark:hover:bg-gray-700', 'transition-colors', 'duration-200');
-                }
+                td.innerHTML = `<span class="block">${subject}</span>`;
+                td.classList.add('hover:bg-purple-50', 'dark:hover:bg-gray-700', 'transition-colors', 'duration-200');
             }
-            // td.textContent = row[key]; // Ini akan menimpa innerHTML di atas, jadi kita komentari
             tr.appendChild(td);
         }
         scheduleBody.appendChild(tr);
