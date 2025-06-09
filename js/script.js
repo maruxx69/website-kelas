@@ -371,3 +371,101 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const scheduleBody = document.getElementById("schedule-body");
+
+  const jadwal = {
+    Senin: {
+      "07.00-07.45": "Upacara",
+      "07.45-08.30": "Sosiologi",
+      "08.30-09.15": "Sosiologi",
+      "09.15-09.30": "Istirahat",
+      "09.30-10.15": "Informatika",
+      "10.15-11.00": "Informatika",
+      "11.00-11.45": "Muatan Lokal",
+      "11.45-12.15": "Istirahat",
+      "12.15-13.00": "PKWU",
+      "13.00-13.45": "PKWU",
+      "13.45-14.30": "Bahasa Indonesia",
+      "15.15-16.00": "P5"
+    },
+    Selasa: {
+      "07.00-07.45": "Geografi",
+      "07.45-08.30": "Geografi",
+      "08.30-09.15": "Pendidikan Agama",
+      "09.15-09.30": "Istirahat",
+      "09.30-10.15": "Pendidikan Agama",
+      "10.15-11.00": "Bahasa Inggris",
+      "11.00-11.45": "Bahasa Inggris",
+      "11.45-12.15": "Istirahat",
+      "12.15-13.00": "Bahasa Inggris",
+      "13.00-13.45": "P5",
+      "13.45-14.30": "P5",
+      "14.30-15.15": "P5"
+    },
+    Rabu: {
+      "07.00-07.45": "Matematika",
+      "07.45-08.30": "Matematika",
+      "08.30-09.15": "Matematika",
+      "09.15-09.30": "Istirahat",
+      "09.30-10.15": "Bahasa Indonesia",
+      "10.15-11.00": "Bahasa Indonesia",
+      "11.00-11.45": "Penjaskes",
+      "11.45-12.15": "Istirahat",
+      "12.15-13.00": "Penjaskes",
+      "13.00-13.45": "P5",
+      "13.45-14.30": "P5",
+      "14.30-15.15": "P5"
+    },
+    Kamis: {
+      "07.00-07.45": "Kimia",
+      "07.45-08.30": "Kimia",
+      "08.30-09.15": "Biologi",
+      "09.15-09.30": "Istirahat",
+      "09.30-10.15": "Biologi",
+      "10.15-11.00": "Sejarah Indonesia",
+      "11.00-11.45": "Sejarah Indonesia",
+      "11.45-12.15": "Istirahat",
+      "12.15-13.00": "Ekonomi",
+      "13.00-13.45": "Ekonomi",
+      "13.45-14.30": "P5",
+      "14.30-15.15": "P5"
+    },
+    Jumat: {
+      "06.40-07.45": "Jumat Sehat",
+      "07.45-08.30": "Pendidikan Pancasila",
+      "08.30-09.15": "Pendidikan Pancasila",
+      "09.15-09.30": "Istirahat",
+      "09.30-10.15": "Fisika",
+      "10.15-11.00": "Fisika",
+      "11.00-12.30": "Istirahat",
+      "12.30-13.15": "P5",
+      "13.15-14.00": "P5",
+      "14.00-16.00": "Ekstrakurikuler"
+    },
+    Sabtu: {
+      "07.00-16.00": "Ekstrakurikuler"
+    }
+  };
+
+  const semuaJam = [...new Set(Object.values(jadwal).flatMap(h => Object.keys(h)))].sort((a, b) => a.localeCompare(b));
+
+  semuaJam.forEach(jam => {
+    const tr = document.createElement("tr");
+    const tdJam = document.createElement("td");
+    tdJam.className = "py-3 px-6 border font-semibold";
+    tdJam.textContent = jam;
+    tr.appendChild(tdJam);
+
+    ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"].forEach(hari => {
+      const td = document.createElement("td");
+      td.className = "py-3 px-6 border";
+      td.textContent = jadwal[hari]?.[jam] || "";
+      tr.appendChild(td);
+    });
+
+    scheduleBody.appendChild(tr);
+  });
+});
